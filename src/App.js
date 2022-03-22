@@ -1,5 +1,5 @@
-import "./scss/app.scss";
-import Header from "./components/Header";
+import "./assets/scss/app.scss";
+import Header from "./components/header/Header";
 import ContentTop from "./components/ContentTop";
 import ContentTitle from "./components/ContentTitle";
 import ContentItems from "./components/ContentItems";

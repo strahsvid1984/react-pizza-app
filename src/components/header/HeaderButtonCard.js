@@ -1,9 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { getOrderCount, getOrderSum } from "../../redux/cartSlice";
 
 const HeaderButtonCard = () => {
+  const orderSum = useSelector(getOrderSum);
+  const orderCount = useSelector(getOrderCount);
+
   return (
     <a className="button button--cart">
-      <span>520 ₽</span>
+      <span>{orderSum} ₽</span>
       <div className="button__delimiter" />
       <svg
         width="18"
@@ -34,7 +39,7 @@ const HeaderButtonCard = () => {
           strokeLinejoin="round"
         />
       </svg>
-      <span>3</span>
+      <span>{orderCount}</span>
     </a>
   );
 };

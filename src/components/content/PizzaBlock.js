@@ -1,10 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPizza } from "../../redux/cartSlice";
 
 const PizzaBlock = ({ doughTypes, pizzaSizes, pizzaName, img, price }) => {
-  const [countPizza, setCountPizza] = useState(0);
-
   const [selectType, setSelectType] = useState(0);
   const [selectSize, setSelectSize] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const pizzaOrderBuild = () => {
+    const pizza = {
+      name: pizzaName,
+      img: img,
+      pizzaSize: selectSize,
+      pizzaDough: selectType,
+      count: 1,
+      price: price,
+    };
+
+    dispatch(addPizza(pizza));
+  };
 
   return (
     <div className="pizza-block">
@@ -47,8 +62,7 @@ const PizzaBlock = ({ doughTypes, pizzaSizes, pizzaName, img, price }) => {
               fill="white"
             />
           </svg>
-          <span onClick={() => setCountPizza(countPizza + 1)}>Добавить</span>
-          <i>{countPizza}</i>
+          <span onClick={pizzaOrderBuild}>Добавить</span>
         </div>
       </div>
     </div>

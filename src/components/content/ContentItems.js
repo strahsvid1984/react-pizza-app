@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPizzas, getListOfPizzas } from "../../redux/cartSlice";
 
 const ContentItems = () => {
-  const dispatch = useDispatch();
   const pizzas = useSelector(getListOfPizzas);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPizzas());
-  }, [dispatch]);
+  }, [dispatch, pizzas]);
 
   return (
     <div className="content__items">

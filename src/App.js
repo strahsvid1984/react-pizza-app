@@ -1,20 +1,25 @@
 import "./assets/scss/app.scss";
 import Header from "./components/header/Header";
-import ContentTop from "./components/content/ContentTop";
-import ContentTitle from "./components/content/ContentTitle";
-import ContentItems from "./components/content/ContentItems";
+import ContentPage from "./pages/ContentPage";
+import { Route, Routes } from "react-router-dom";
+import CartPage from "./pages/CartPage";
+import { useSelector } from "react-redux";
+import { getOrderPizzas } from "./redux/cartSlice";
+import EmptyCartPage from "./pages/EmptyCartPage";
 
 function App() {
+  const orderList = useSelector(getOrderPizzas);
+
   return (
     <div className="wrapper">
       <Header />
-      <div className="content">
-        <div className="container">
-          <ContentTop />
-          <ContentTitle />
-          <ContentItems />
-        </div>
-      </div>
+      <Routes>
+        <Route path={"/"} element={<ContentPage />} />
+        <Route
+          path={"/cart"}
+          element={orderList.length > 0 ? <CartPage /> : <EmptyCartPage />}
+        />
+      </Routes>
     </div>
   );
 }
